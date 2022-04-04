@@ -6,6 +6,7 @@ from .models import User,Post,Comment,Room,Message
 
 # Create your views here.
 
+
 #Home func
 def home(request):
     if request.user.is_anonymous:
