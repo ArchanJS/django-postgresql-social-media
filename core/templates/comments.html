@@ -1,0 +1,45 @@
+{% extends 'nav.html' %}
+    {% block navblock %}
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <div class="container d-flex flex-column align-items-center justify-content-center">
+            <div class="card w-50 mx-auto m-3 bg-dark text-info" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title"><strong>Title: </strong> {{post.title}}</h5>
+                  <hr>
+                  <h6 class="card-subtitle mb-2"><strong>Posted by: </strong>{{post.postedby}}</h6>
+                  <hr>
+                  <p class="card-text"><strong>Description: </strong>{{post.content}}</p>
+                  <hr>
+                </div>
+              </div>
+        </div>
+        <div class="container">
+            <div class="row d-flex flex-column align-items-center justify-content-center">
+                <form class="row w-50 mx-auto border border-dark p-3 mt-3 bg-dark text-info" method="POST" action="/createcomment/{{post.id}}">
+                    {% comment %} <h1 class="text-center">Welcome {{username}}</h1> {% endcomment %}
+                    {% csrf_token %}
+                    <textarea class="form-control my-3 mt-2" placeholder="Content" name="content" aria-label="default input example" rows="6"></textarea>
+                    <input type="submit" class="btn btn-outline-info w-25 mx-auto my-4">
+                </form>
+                <div class="d-flex flex-wrap align-items-center justify-content-center">
+                    {% for comment in comments %}
+                <div class="card m-3 bg-dark text-info text-center" style="width: 50rem;">
+                    <div class="card-body">
+                      <h5 class="card-title"><strong>Post: </strong> {{comment.post.title}}</h5>
+                      <hr>
+                      <h6 class="card-subtitle mb-2"><strong>Commented by: </strong>{{comment.commentedby}}</h6>
+                      <hr>
+                      <p class="card-text">{{comment.content}}</p>
+                      {% if user.id == comment.commentedby.id %}
+                      <hr>
+                      <a href="deletecomment/{{comment.id}}" class="card-link">Delete</a>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% endblock navblock %}

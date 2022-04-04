@@ -1,0 +1,25 @@
+{% extends 'nav.html' %}
+    {% block navblock %}
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            {% for post in posts %}
+        <div class="card m-3 bg-dark text-info" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title"><strong>Title: </strong> {{post.title}}</h5>
+              <hr>
+              <h6 class="card-subtitle mb-2"><strong>Posted by: </strong>{{post.postedby}}</h6>
+              <hr>
+              <p class="card-text"><strong>Description: </strong>{{post.content}}</p>
+              <hr>
+              <a href="like/{{post.id}}"><i class="fa-solid fa-thumbs-up me-2" style="cursor:pointer;"> {{post.totallikes}}</i><a/>
+                {% if username == post.postedby.username %}
+                <a href="edit/{{post.id}}" class="card-link">Edit</a>
+                <a href="delete/{{post.id}}" class="card-link">Delete</a>
+                {% endif %}
+                <a href="comments/{{post.id}}" class="card-link">comments</a>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+    </div>
+    {% endblock navblock %}

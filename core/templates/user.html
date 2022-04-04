@@ -1,0 +1,18 @@
+{% extends 'nav.html' %}
+    {% block navblock %}
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <div class="container d-flex flex-column align-items-center justify-content-center">
+            <div class="card w-50 mx-auto m-3 bg-dark text-info" style="width: 18rem;">
+                <div class="card-body  text-center">
+                  <h5 class="card-title"><strong>Name: </strong> {{user.fullname}}</h5>
+                  <hr>
+                  <h6 class="card-subtitle mb-2"><strong>Username: </strong>{{user.username}}</h6>
+                  <hr>
+                  <p class="card-text"><strong>Email: </strong>{{user.email}}</p>
+                  <hr>
+                  <a href="chat/{{user.id}}" class="card-link mx-auto">Chat</a>
+                </div>
+              </div>
+        </div>
+    
+    {% endblock navblock %}

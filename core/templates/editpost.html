@@ -1,0 +1,11 @@
+{% extends 'nav.html' %}
+    {% block navblock %}
+    <div class="container">
+        <form class="column w-50 mt-5 mx-auto border border-dark bg-dark text-info d-flex flex-column align-items-center justify-content-center" method="POST" action="/update/{{post.id}}">
+            {% csrf_token %}
+            <input class="form-control w-75 my-3 mt-5" type="text" value="{{post.title}}" placeholder="Title" name="title" aria-label="default input example">
+            <textarea class="form-control w-75 my-3 mt-2" placeholder="Content" name="content" aria-label="default input example" rows="6">{{post.content}}</textarea>
+            <input type="submit" class="btn btn-outline-info w-25 mx-auto my-4">
+        </form>
+    </div>
+    {% endblock navblock %}
